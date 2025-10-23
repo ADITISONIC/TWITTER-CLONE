@@ -32,6 +32,9 @@ export const syncUser = asyncHandler(async(req,res)=>{
         username:clerkUser.emailAddresses[0].emailAddress.split("@")[0],
         profilePicture:clerkUser.imageUrl||"", 
      }
+      const user = await User.create(userData);
+
+      res.status(201).json({ user, message: "User created successfully" });
 })
 
 export const getCurrentUser = asyncHandler(async(req,res)=>{
